@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Homepage() {
@@ -28,9 +29,11 @@ function FilmBanners() {
   return (
     <>
       {banners.map((banner) => (
-        <div className="banner">
-          <img src={banner.posterURL} alt={banner.title} />
-        </div>
+        <Link to="sessoes/:idFilme">
+          <div className="banner">
+            <img src={banner.posterURL} alt={banner.title} />
+          </div>
+        </Link>
       ))}
     </>
   );
