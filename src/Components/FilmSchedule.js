@@ -14,11 +14,11 @@ export default function FilmSchedule() {
 
 function Schedule() {
   const [days, setDays] = useState([]);
-  const { idSessao } = useParams;
+  const { idFilme } = useParams();
 
   useEffect(() => {
     const promise = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/movies/1/showtimes`
+      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`
     );
 
     promise.then((response) => {
@@ -34,8 +34,8 @@ function Schedule() {
             {weekday} - {date}
           </p>
           <div className="showtimes">
-            {showtimes.map(({ name }) => (
-              <Link to={`/assentos/${idSessao}`}>
+            {showtimes.map(({ name, id }) => (
+              <Link to={`/assentos/${id}`} key={id}>
                 <button>{name}</button>
               </Link>
             ))}

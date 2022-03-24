@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 export default function Homepage() {
   return (
@@ -16,7 +15,6 @@ export default function Homepage() {
 
 function FilmBanners() {
   const [banners, setBanners] = useState([]);
-  const { idFilme } = { useParams };
 
   useEffect(() => {
     const promise = axios.get(
@@ -27,13 +25,12 @@ function FilmBanners() {
       setBanners(response.data);
     });
   }, []);
-  console.log(banners);
 
   return (
     <>
       {banners.map((banner) => (
-        <Link to={`/sessoes/${banner.id}`}>
-          <div className="banner" key={banner.id}>
+        <Link to={`/sessoes/${banner.id}`} key={banner.id}>
+          <div className="banner">
             <img src={banner.posterURL} alt={banner.title} />
           </div>
         </Link>
