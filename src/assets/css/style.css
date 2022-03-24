@@ -26,7 +26,7 @@ header p {
   line-height: 40px;
 }
 
-main {
+main.homepage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,4 +62,30 @@ p.subtitle.succeed {
   font-weight: 700;
   color: #247a6b;
   padding: 0 25%;
+}
+
+main.filmschedule {
+  display: flex;
+  flex-direction: column;
+  padding: 0 6%;
+}
+
+.day p {
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+  margin: 25px 0px 6px;
+}
+
+.showtimes button {
+  width: 83px;
+  height: 43px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--main-color);
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.02em;
+  margin: 10px 8px 5px 0;
 }
