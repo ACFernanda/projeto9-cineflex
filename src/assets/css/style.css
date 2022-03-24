@@ -89,3 +89,49 @@ main.filmschedule {
   letter-spacing: 0.02em;
   margin: 10px 8px 5px 0;
 }
+
+main.select-seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seats {
+  width: 350px;
+  height: 180px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.seat .available {
+  width: 26px;
+  height: 26px;
+  background: #c3cfd9;
+  border: 1px solid #808f9d;
+  box-sizing: border-box;
+  border-radius: 12px;
+  color: #000000;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  margin: 4px;
+}
+
+.seat .unavailable {
+  width: 26px;
+  height: 26px;
+  background: #fbe192;
+  border: 1px solid #f7c52b;
+  box-sizing: border-box;
+  border-radius: 12px;
+  color: #000000;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  margin: 2px;
+}
