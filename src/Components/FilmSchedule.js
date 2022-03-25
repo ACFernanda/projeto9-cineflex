@@ -14,6 +14,7 @@ export default function FilmSchedule() {
 
 function Schedule() {
   const [days, setDays] = useState([]);
+  const [info, setInfo] = useState({});
   const { idFilme } = useParams();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function Schedule() {
 
     promise.then((response) => {
       setDays(response.data.days);
+      setInfo(response.data);
     });
   }, []);
 
@@ -42,6 +44,18 @@ function Schedule() {
           </div>
         </div>
       ))}
+      <Footer banner={info.posterURL} title={info.title} />
     </>
+  );
+}
+
+function Footer({ banner, title }) {
+  return (
+    <footer>
+      <div className="banner small">
+        <img src={banner} alt={title} />
+      </div>
+      <p>{title}</p>
+    </footer>
   );
 }

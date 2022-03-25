@@ -68,6 +68,7 @@ main.filmschedule {
   display: flex;
   flex-direction: column;
   padding: 0 6%;
+  margin-bottom: 125px;
 }
 
 .day p {
@@ -104,12 +105,11 @@ main.select-seats {
   flex-wrap: wrap;
 }
 
-.seat .available {
+.seat.available {
   width: 26px;
   height: 26px;
   background: #c3cfd9;
   border: 1px solid #808f9d;
-  box-sizing: border-box;
   border-radius: 12px;
   color: #000000;
   font-size: 11px;
@@ -120,12 +120,11 @@ main.select-seats {
   margin: 4px;
 }
 
-.seat .unavailable {
+.seat.unavailable {
   width: 26px;
   height: 26px;
   background: #fbe192;
   border: 1px solid #f7c52b;
-  box-sizing: border-box;
   border-radius: 12px;
   color: #000000;
   font-size: 11px;
@@ -133,5 +132,66 @@ main.select-seats {
   align-items: center;
   justify-content: center;
   letter-spacing: 0.04em;
-  margin: 2px;
+  margin: 4px;
+}
+
+.seat.selected {
+  width: 26px;
+  height: 26px;
+  background: #8dd7cf;
+  border: 1px solid #45bdb0;
+  border-radius: 12px;
+  color: #000000;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  margin: 4px;
+}
+
+.labels {
+  display: flex;
+  flex-direction: row;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.label p {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+footer {
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background: #dfe6ed;
+  border: 1px solid #9eadba;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.banner.small {
+  width: 60px;
+  background-color: #ffffff;
+}
+
+.banner.small img {
+  width: 48px;
+  height: 72px;
+  margin: 6px;
+}
+
+footer p {
+  font-size: 26px;
 }

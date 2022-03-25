@@ -4,18 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Seats() {
-  return (
-    <main className="select-seats">
-      <p className="subtitle">Selecione o(s) assento(s)</p>
-      <div className="seats">
-        <RenderSeats />
-      </div>
-    </main>
-  );
-}
-
-function RenderSeats() {
   const [seats, setSeats] = useState([]);
+  const [info, setInfo] = useState({});
   const { idSessao } = useParams();
 
   useEffect(() => {
@@ -25,20 +15,72 @@ function RenderSeats() {
 
     promise.then((response) => {
       setSeats(response.data.seats);
+      setInfo(response.data);
+    });
+    promise.catch((error) => {
+      console.error(error);
     });
   }, []);
 
   return (
     <>
-      {seats.map(({ id, name, isAvailable }) => (
-        <div className="seat" key={id}>
-          {isAvailable ? (
-            <div className="available">{name}</div>
-          ) : (
-            <div className="unavailable">{name}</div>
-          )}
+      <main className="select-seats">
+        <p className="subtitle">Selecione o(s) assento(s)</p>
+        <div className="seats">
+          <RenderSeats seats={seats} />
         </div>
+        <div className="labels">
+          <div className="label">
+            <div className="seat selected"></div>
+            <p>Selecionado</p>
+          </div>
+          <div className="label">
+            <div className="seat available"></div>
+            <p>Disponível</p>
+          </div>
+          <div className="label">
+            <div className="seat unavailable"></div>
+            <p>Indisponível</p>
+          </div>
+        </div>
+      </main>
+      <Footer info={info} />
+    </>
+  );
+}
+
+function RenderSeats({ seats }) {
+  return (
+    <>
+      {seats.map(({ id, name, isAvailable }) => (
+        <>
+          {isAvailable ? (
+            <button className="seat available" key={id}>
+              {name}
+            </button>
+          ) : (
+            <button className="seat unavailable" key={id}>
+              {name}
+            </button>
+          )}
+        </>
       ))}
     </>
+  );
+}
+
+function Footer({ name, day, movie }) {
+  const { posterURL, title } = movie;
+
+  return (
+    <footer>
+      <div className="banner small">
+        <img src={posterURL} alt={title} />
+      </div>
+      <p>{title}</p>
+      <p>
+        {day.weekday} - {name}
+      </p>
+    </footer>
   );
 }
