@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function Seat({ seats }) {
   return seats.map(({ id, name, isAvailable }) => (
-    <RenderButton id={id} name={name} isAvailable={isAvailable} />
+    <RenderButton key={id} id={id} name={name} isAvailable={isAvailable} />
   ));
 }
 
@@ -14,7 +14,7 @@ function RenderButton({ id, name, isAvailable }) {
     return (
       <Button
         disponibility={disponibility}
-        onClick={() => setDisponibility(false)}
+        onClick={() => setDisponibility(!disponibility)}
         key={id}
       >
         {name}
