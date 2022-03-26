@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Seat from "./Seat";
 
 export default function Seats() {
   const [seats, setSeats] = useState(null);
@@ -26,9 +27,7 @@ export default function Seats() {
     <>
       <main className="select-seats">
         <p className="subtitle">Selecione o(s) assento(s)</p>
-        <div className="seats">
-          {seats ? <RenderSeats seats={seats} /> : null}
-        </div>
+        <div className="seats">{seats ? <Seat seats={seats} /> : null}</div>
         <div className="labels">
           <div className="label">
             <div className="seat selected"></div>
@@ -66,26 +65,6 @@ export default function Seats() {
         </form>
       </main>
       {info ? <Footer info={info} /> : null}
-    </>
-  );
-}
-
-function RenderSeats({ seats }) {
-  return (
-    <>
-      {seats.map(({ id, name, isAvailable }) => (
-        <>
-          {isAvailable ? (
-            <button className="seat available" key={id}>
-              {name}
-            </button>
-          ) : (
-            <button className="seat unavailable" key={id}>
-              {name}
-            </button>
-          )}
-        </>
-      ))}
     </>
   );
 }
