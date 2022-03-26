@@ -4,8 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Seats() {
-  const [seats, setSeats] = useState([]);
-  const [info, setInfo] = useState({});
+  const [seats, setSeats] = useState(null);
+  const [info, setInfo] = useState(null);
   const { idSessao } = useParams();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Seats() {
       <main className="select-seats">
         <p className="subtitle">Selecione o(s) assento(s)</p>
         <div className="seats">
-          <RenderSeats seats={seats} />
+          {seats ? <RenderSeats seats={seats} /> : null}
         </div>
         <div className="labels">
           <div className="label">
@@ -44,7 +44,7 @@ export default function Seats() {
           </div>
         </div>
       </main>
-      <Footer info={info} />
+      {info ? <Footer info={info} /> : null}
     </>
   );
 }
@@ -69,18 +69,20 @@ function RenderSeats({ seats }) {
   );
 }
 
-function Footer({ name, day, movie }) {
-  const { posterURL, title } = movie;
+function Footer({ info }) {
+  const { posterURL, title } = info.movie;
 
   return (
     <footer>
       <div className="banner small">
         <img src={posterURL} alt={title} />
       </div>
-      <p>{title}</p>
-      <p>
-        {day.weekday} - {name}
-      </p>
+      <div className="info-film">
+        <p>{title}</p>
+        <p>
+          {info.day.weekday} - {info.name}
+        </p>
+      </div>
     </footer>
   );
 }

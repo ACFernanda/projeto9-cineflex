@@ -170,7 +170,7 @@ main.select-seats {
 
 footer {
   width: 100%;
-  height: 120px;
+  min-height: 120px;
   position: fixed;
   left: 0px;
   bottom: 0px;
@@ -194,4 +194,9 @@ footer {
 
 footer p {
   font-size: 26px;
+}
+
+footer .info-film {
+  display: flex;
+  flex-direction: column;
 }
