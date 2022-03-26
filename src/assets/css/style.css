@@ -168,6 +168,52 @@ main.select-seats {
   margin-top: 8px;
 }
 
+form {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+form label {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+form input {
+  width: 100%;
+  height: 51px;
+  background: #ffffff;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #293845;
+}
+
+form input::placeholder {
+  font-size: 18px;
+  font-style: italic;
+  padding-left: 4px;
+}
+
+form button {
+  width: 225px;
+  height: 42px;
+  background: #e8833a;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 footer {
   width: 100%;
   min-height: 120px;

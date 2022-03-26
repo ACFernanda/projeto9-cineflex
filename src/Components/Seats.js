@@ -43,6 +43,27 @@ export default function Seats() {
             <p>Indisponível</p>
           </div>
         </div>
+
+        <form>
+          <label for="name">Nome do comprador:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Digite seu nome..."
+            required
+          ></input>
+          <label for="cpf">CPF do comprador:</label>
+          <input
+            type="text"
+            name="cpf"
+            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+            placeholder="000.000.000-00"
+            required
+          ></input>
+          <Link to={"/sucesso"}>
+            <button type="submit">Reservar assento(s)</button>
+          </Link>
+        </form>
       </main>
       {info ? <Footer info={info} /> : null}
     </>
