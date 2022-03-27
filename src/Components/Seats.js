@@ -54,31 +54,26 @@ export default function Seats() {
           </div>
         </div>
 
-        <form>
+        <form onSubmit={(event) => BuyTickets(event, name, cpf, selectedSeats)}>
           <label for="name">Nome do comprador:</label>
           <input
+            required
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Digite seu nome..."
             minLength="3"
-            required
           ></input>
           <label for="cpf">CPF do comprador:</label>
           <input
+            required
             type="text"
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
             placeholder="Digite seu CPF..."
             pattern="[0-9]{11}"
-            required
           ></input>
-          <button
-            onClick={(event) => BuyTickets(event, name, cpf, selectedSeats)}
-            type="submit"
-          >
-            Reservar assento(s)
-          </button>
+          <button type="submit">Reservar assento(s)</button>
         </form>
       </main>
       {info ? <Footer info={info} /> : null}
@@ -105,17 +100,7 @@ function Footer({ info }) {
 }
 
 function BuyTickets(event, name, cpf, selectedSeats) {
-  console.log(name);
-  console.log(cpf);
-  console.log(selectedSeats);
-
   event.preventDefault();
-
-  // axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
-  //   ids: `${selectedSeats}`,
-  //   name: `${name}`,
-  //   cpf: `${cpf}`,
-  // });
 
   const promise = axios.post(
     "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
