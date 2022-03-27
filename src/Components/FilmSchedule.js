@@ -29,7 +29,7 @@ function Schedule() {
   }, []);
 
   return (
-    <>
+    <main className="filmschedule">
       {days.map(({ id, weekday, date, showtimes }) => (
         <div className="day" key={id}>
           <p>
@@ -45,7 +45,7 @@ function Schedule() {
         </div>
       ))}
       <Footer banner={info.posterURL} title={info.title} />
-    </>
+    </main>
   );
 }
 

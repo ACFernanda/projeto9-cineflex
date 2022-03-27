@@ -14,10 +14,6 @@ export default function Seats({
   cpf,
 }) {
   const [seats, setSeats] = useState(null);
-  // const [info, setInfo] = useState(null);
-  // const [name, setName] = useState("");
-  // const [cpf, setCpf] = useState("");
-  // const [selectedSeats, setSelectedSeats] = useState([]);
   const { idSessao } = useParams();
   const navigate = useNavigate("/sucesso");
 
@@ -66,7 +62,9 @@ export default function Seats({
         <form
           onSubmit={(event) => {
             BuyTickets(event, name, cpf, selectedSeats);
-            navigate("/sucesso");
+            {
+              selectedSeats.length > 0 ? navigate("/sucesso") : <></>;
+            }
           }}
         >
           <label for="name">Nome do comprador:</label>

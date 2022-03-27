@@ -17,6 +17,10 @@ header {
   justify-content: center;
   height: 67px;
   margin-bottom: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 header p {
@@ -37,6 +41,7 @@ p.subtitle {
   margin-bottom: 30px;
   font-size: 24px;
   text-align: center;
+  margin-top: 100px;
 }
 
 .banners {
@@ -282,7 +287,7 @@ button.home {
   letter-spacing: 0.04em;
   color: #ffffff;
   position: absolute;
-  bottom: 15%;
+  bottom: 10px;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);

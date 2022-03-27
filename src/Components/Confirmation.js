@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Confirmation(info) {
-  console.log(info);
   const title = info.info.movie.title;
   const date = info.info.day.date;
   const hour = info.info.name;
@@ -10,6 +9,7 @@ export default function Confirmation(info) {
   const name = info.name;
   const cpf = info.cpf;
   const nameSeats = [];
+  const navigate = useNavigate();
 
   function NameSeats() {
     for (let i = 0; i < seats.length; i++) {
@@ -43,9 +43,9 @@ export default function Confirmation(info) {
         <p className="dynamic-info">Nome: {name}</p>
         <p className="dynamic-info">CPF: {cpf}</p>
       </div>
-      <Link to="/">
-        <button className="home">Voltar para Home</button>
-      </Link>
+      <button onClick={() => navigate("/")} className="home">
+        Voltar para Home
+      </button>
     </>
   );
 }
