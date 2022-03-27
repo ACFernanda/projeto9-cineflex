@@ -7,6 +7,9 @@ import Seat from "./Seat";
 export default function Seats() {
   const [seats, setSeats] = useState(null);
   const [info, setInfo] = useState(null);
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const { idSessao } = useParams();
 
   useEffect(() => {
@@ -27,7 +30,15 @@ export default function Seats() {
     <>
       <main className="select-seats">
         <p className="subtitle">Selecione o(s) assento(s)</p>
-        <div className="seats">{seats ? <Seat seats={seats} /> : null}</div>
+        <div className="seats">
+          {seats ? (
+            <Seat
+              seats={seats}
+              setSelectedSeats={setSelectedSeats}
+              selectedSeats={selectedSeats}
+            />
+          ) : null}
+        </div>
         <div className="labels">
           <div className="label">
             <div className="seat selected"></div>
@@ -47,21 +58,27 @@ export default function Seats() {
           <label for="name">Nome do comprador:</label>
           <input
             type="text"
-            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Digite seu nome..."
+            minLength="3"
             required
           ></input>
           <label for="cpf">CPF do comprador:</label>
           <input
             type="text"
-            name="cpf"
-            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            placeholder="000.000.000-00"
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
+            placeholder="Digite seu CPF..."
+            pattern="[0-9]{11}"
             required
           ></input>
-          <Link to={"/sucesso"}>
-            <button type="submit">Reservar assento(s)</button>
-          </Link>
+          <button
+            onClick={(event) => BuyTickets(event, name, cpf, selectedSeats)}
+            type="submit"
+          >
+            Reservar assento(s)
+          </button>
         </form>
       </main>
       {info ? <Footer info={info} /> : null}
@@ -85,4 +102,36 @@ function Footer({ info }) {
       </div>
     </footer>
   );
+}
+
+function BuyTickets(event, name, cpf, selectedSeats) {
+  console.log(name);
+  console.log(cpf);
+  console.log(selectedSeats);
+
+  event.preventDefault();
+
+  // axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+  //   ids: `${selectedSeats}`,
+  //   name: `${name}`,
+  //   cpf: `${cpf}`,
+  // });
+
+  const promise = axios.post(
+    "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
+    {
+      ids: selectedSeats,
+      name: name,
+      cpf: cpf,
+    }
+  );
+
+  promise.then((response) => {
+    console.log(response);
+  });
+
+  promise.catch((error) => {
+    console.log(error.response.data);
+    alert("Vish! Algo deu errado.");
+  });
 }

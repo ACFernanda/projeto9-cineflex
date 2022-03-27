@@ -1,20 +1,45 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Seat({ seats }) {
+export default function Seat({ seats, setSelectedSeats, selectedSeats }) {
   return seats.map(({ id, name, isAvailable }) => (
-    <RenderButton key={id} id={id} name={name} isAvailable={isAvailable} />
+    <RenderButton
+      key={id}
+      id={id}
+      name={name}
+      isAvailable={isAvailable}
+      setSelectedSeats={setSelectedSeats}
+      selectedSeats={selectedSeats}
+    />
   ));
 }
 
-function RenderButton({ id, name, isAvailable }) {
+function RenderButton({
+  id,
+  name,
+  isAvailable,
+  setSelectedSeats,
+  selectedSeats,
+}) {
   const [disponibility, setDisponibility] = useState(true);
 
   if (isAvailable) {
     return (
       <Button
         disponibility={disponibility}
-        onClick={() => setDisponibility(!disponibility)}
+        onClick={() => {
+          {
+            setDisponibility(!disponibility);
+          }
+          {
+            if (selectedSeats.includes(id)) {
+              return setSelectedSeats(
+                selectedSeats.filter((selected) => selected !== id)
+              );
+            }
+            setSelectedSeats([...selectedSeats, id]);
+          }
+        }}
         key={id}
       >
         {name}
