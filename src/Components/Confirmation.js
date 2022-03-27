@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Confirmation(info) {
   const title = info.info.movie.title;
@@ -35,7 +35,9 @@ export default function Confirmation(info) {
       <p className="success">Ingressos</p>
       <div className="info-film">
         {nameSeats.map((seat) => (
-          <p className="dynamic-info">Assento {seat}</p>
+          <p key={seat} className="dynamic-info">
+            Assento {seat}
+          </p>
         ))}
       </div>
       <p className="success">Comprador</p>
@@ -43,7 +45,13 @@ export default function Confirmation(info) {
         <p className="dynamic-info">Nome: {name}</p>
         <p className="dynamic-info">CPF: {cpf}</p>
       </div>
-      <button onClick={() => navigate("/")} className="home">
+      <button
+        onClick={() => {
+          navigate("/");
+          window.location.reload();
+        }}
+        className="home"
+      >
         Voltar para Home
       </button>
     </>
