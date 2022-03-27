@@ -102,21 +102,25 @@ function Footer({ info }) {
 function BuyTickets(event, name, cpf, selectedSeats) {
   event.preventDefault();
 
-  const promise = axios.post(
-    "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
-    {
-      ids: selectedSeats,
-      name: name,
-      cpf: cpf,
-    }
-  );
+  if (selectedSeats.length > 0) {
+    const promise = axios.post(
+      "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
+      {
+        ids: selectedSeats,
+        name: name,
+        cpf: cpf,
+      }
+    );
 
-  promise.then((response) => {
-    console.log(response);
-  });
+    promise.then((response) => {
+      console.log(response);
+    });
 
-  promise.catch((error) => {
-    console.log(error.response.data);
-    alert("Vish! Algo deu errado.");
-  });
+    promise.catch((error) => {
+      console.log(error.response.data);
+      alert("Vish! Algo deu errado.");
+    });
+  } else {
+    alert("Selecione o(s) assento(s).");
+  }
 }
