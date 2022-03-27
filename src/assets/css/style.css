@@ -246,3 +246,27 @@ footer .info-film {
   display: flex;
   flex-direction: column;
 }
+
+p.success {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #293845;
+  margin-bottom: 6px;
+  margin-top: 40px;
+  margin-left: 8%;
+}
+
+.info-film {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8%;
+}
+
+.dynamic-info {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #293845;
+}

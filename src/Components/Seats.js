@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Seat from "./Seat";
 
-export default function Seats() {
+export default function Seats({
+  setInfo,
+  setSelectedSeats,
+  setName,
+  setCpf,
+  info,
+  selectedSeats,
+  name,
+  cpf,
+}) {
   const [seats, setSeats] = useState(null);
-  const [info, setInfo] = useState(null);
-  const [name, setName] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  // const [info, setInfo] = useState(null);
+  // const [name, setName] = useState("");
+  // const [cpf, setCpf] = useState("");
+  // const [selectedSeats, setSelectedSeats] = useState([]);
   const { idSessao } = useParams();
+  const navigate = useNavigate("/sucesso");
 
   useEffect(() => {
     const promise = axios.get(
@@ -54,7 +63,12 @@ export default function Seats() {
           </div>
         </div>
 
-        <form onSubmit={(event) => BuyTickets(event, name, cpf, selectedSeats)}>
+        <form
+          onSubmit={(event) => {
+            BuyTickets(event, name, cpf, selectedSeats);
+            navigate("/sucesso");
+          }}
+        >
           <label for="name">Nome do comprador:</label>
           <input
             required
