@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Confirmation(info) {
   console.log(info);
   const title = info.info.movie.title;
@@ -41,6 +43,9 @@ export default function Confirmation(info) {
         <p className="dynamic-info">Nome: {name}</p>
         <p className="dynamic-info">CPF: {cpf}</p>
       </div>
+      <Link to="/">
+        <button className="home">Voltar para Home</button>
+      </Link>
     </>
   );
 }
